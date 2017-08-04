@@ -5,7 +5,7 @@ SOURCE = libzip-$(VERSION).tar.xz
 
 # depends on zlib
 CONF_OPTS += --with-zlib=$(abspath $(DIR_INSTALL))
-CONF_OPTS += LIBS=$(abspath $(DIR_INSTALL))/lib/libz.a
+CONF_OPTS += LIBS="-L$(abspath $(DIR_INSTALL))/lib -lz"
 
 
 

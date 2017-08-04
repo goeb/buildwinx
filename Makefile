@@ -14,6 +14,9 @@ PKGS += pcre
 PKGS += zlib
 PKGS += libzip
 PKGS += libxml2
+PKGS += freetype
+PKGS += libpng
+PKGS += poppler
 
 .PHONY: $(PKGS)
 
