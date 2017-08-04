@@ -1,0 +1,13 @@
+
+VERSION = 2.9.4
+SITE = ftp://xmlsoft.org/libxml2
+SOURCE = libxml2-$(VERSION).tar.gz
+
+CONF_OPTS += --without-http
+CONF_OPTS += --without-python
+CONF_OPTS += --without-ftp
+CONF_OPTS += CFLAGS="-I$(abspath $(DIR_INSTALL))/include -DLIBXML_STATIC"
+CONF_OPTS += LDFLAGS=-L$(abspath $(DIR_INSTALL))/lib
+
+
+include tools/autotools.mk
