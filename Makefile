@@ -12,7 +12,7 @@ export DIR_DOWNLOAD ?= dl
 PKGS =
 PKGS += pcre
 PKGS += zlib
-#PKGS += libzip
+PKGS += libzip
 PKGS += libxml2
 
 .PHONY: $(PKGS)
