@@ -17,6 +17,8 @@ PKGS += libxml2
 PKGS += freetype
 PKGS += libpng
 PKGS += poppler
+PKGS += openssl
+PKGS += curl
 
 .PHONY: $(PKGS)
 
