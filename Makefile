@@ -19,6 +19,9 @@ PKGS += libpng
 PKGS += poppler
 PKGS += openssl
 PKGS += curl
+#PKGS += SDL
+#PKGS += SDL_mixer
+PKGS += libarchive
 
 .PHONY: $(PKGS)
 
