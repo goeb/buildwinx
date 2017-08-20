@@ -1,7 +1,7 @@
 
 export CC = i686-w64-mingw32-gcc
 export CXX = i686-w64-mingw32-g++
-export XHOST = i586-mingw32msvc
+export XHOST = i686-w64-mingw32
 
 export DIR_OUTPUT ?= _output
 export DIR_BUILD ?= $(DIR_OUTPUT)/build
@@ -19,8 +19,8 @@ PKGS += libpng
 PKGS += poppler
 PKGS += openssl
 PKGS += curl
-#PKGS += SDL
-#PKGS += SDL_mixer
+PKGS += SDL
+PKGS += SDL_mixer
 PKGS += libarchive
 
 .PHONY: $(PKGS)

@@ -12,8 +12,7 @@ all: install
 
 install: build | $(DIR_INSTALL)
 	$(MAKE) -C $(DIR_BUILD)/$(PKG)-$(VERSION) \
-		install \
-		DESTDIR=$(abspath $(DIR_INSTALL))
+		install
 
 build: $(STAMP_CONF) | $(DIR_BUILD)/$(PKG)-$(VERSION)
 	$(MAKE) -C $(DIR_BUILD)/$(PKG)-$(VERSION) \
@@ -22,7 +21,7 @@ build: $(STAMP_CONF) | $(DIR_BUILD)/$(PKG)-$(VERSION)
 $(STAMP_CONF): $(STAMP_EXTRACT)
 	set -e; \
 	cd $(DIR_BUILD)/$(PKG)-$(VERSION); \
-	./configure CXX=$(CXX) CC=$(CC) --host=$(XHOST) --prefix=/ $(CONF_OPTS); \
+	./configure CXX=$(CXX) CC=$(CC) --host=$(XHOST) --prefix=$(abspath $(DIR_INSTALL)) $(CONF_OPTS); \
 	touch $(notdir $(STAMP_CONF))
 
 $(STAMP_EXTRACT): $(DIR_DOWNLOAD)/$(SOURCE) | $(DIR_BUILD)
