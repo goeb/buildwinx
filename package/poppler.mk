@@ -17,8 +17,8 @@ CONF_OPTS += --disable-poppler-qt5
 CONF_OPTS += --disable-gtk-test
 CONF_OPTS += --without-x
 CONF_OPTS += --enable-dctdecoder=none
-CONF_OPTS += FREETYPE_CFLAGS=-I$(abspath $(DIR_INSTALL))/include
-CONF_OPTS += FREETYPE_LIBS="-L$(abspath $(DIR_INSTALL))/lib -lfreetype"
+CONF_OPTS += FREETYPE_CFLAGS=-I$(DIR_INSTALL)/include
+CONF_OPTS += FREETYPE_LIBS="-L$(DIR_INSTALL)/lib -lfreetype"
 
 
-include tools/autotools.mk
+include tools/common.mk

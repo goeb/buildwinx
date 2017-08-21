@@ -7,7 +7,7 @@ CONF_OPTS += --without-http
 CONF_OPTS += --without-python
 CONF_OPTS += --without-ftp
 CONF_OPTS += CFLAGS="-DLIBXML_STATIC"
-CONF_OPTS += PKG_CONFIG_LIBDIR=$(abspath $(DIR_INSTALL))
+CONF_OPTS += PKG_CONFIG_LIBDIR=$(DIR_INSTALL)
 
 
-include tools/autotools.mk
+include tools/common.mk

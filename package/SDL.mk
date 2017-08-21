@@ -6,4 +6,4 @@ SOURCE = SDL-$(VERSION).tar.gz
 CONF_OPTS += 
 
 
-include tools/autotools.mk
+include tools/common.mk

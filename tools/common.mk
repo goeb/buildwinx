@@ -1,9 +1,12 @@
 
+# Some build steps may be customized:
+#   CMD_CONFIGURE
+#   CMD_INSTALL
+#   CONF_OPTS
+#
+
 PKG = $(notdir $(firstword $(MAKEFILE_LIST)))
 PKG := $(PKG:%.mk=%)
-#$(error PKG=$(PKG), MAKEFILE_LIST=$(MAKEFILE_LIST))
-
-# Autotools-related rules
 
 STAMP_CONF = $(DIR_BUILD)/$(PKG)-$(VERSION)/.stamp_conf
 STAMP_EXTRACT = $(DIR_BUILD)/$(PKG)-$(VERSION)/.stamp_extract
@@ -20,29 +23,42 @@ reconfigure: distclean all
 
 
 install: build | $(DIR_INSTALL)
-	$(MAKE) -C $(DIR_BUILD)/$(PKG)-$(VERSION) \
-		install
+	@echo "Installing $(PKG)..."
+ifeq ($(CMD_INSTALL),)
+	$(MAKE) -C $(DIR_BUILD)/$(PKG)-$(VERSION) install
+else
+	$(CMD_INSTALL)
+endif
 
 build: $(STAMP_CONF) | $(DIR_BUILD)/$(PKG)-$(VERSION)
+	@echo "Compiling $(PKG)..."
 	$(MAKE) -C $(DIR_BUILD)/$(PKG)-$(VERSION) \
 		-j 2
 
 $(STAMP_CONF): $(STAMP_EXTRACT)
+	@echo "Configuring $(PKG)..."
+ifeq ($(CMD_CONFIGURE),)
 	set -e; \
 	cd $(DIR_BUILD)/$(PKG)-$(VERSION); \
-	./configure CXX=$(CXX) CC=$(CC) --host=$(XHOST) --prefix=$(abspath $(DIR_INSTALL)) $(CONF_OPTS); \
+	./configure CXX=$(CXX) CC=$(CC) --host=$(XHOST) --prefix=$(DIR_INSTALL) $(CONF_OPTS)
+else
+	set -e; \
+	cd $(DIR_BUILD)/$(PKG)-$(VERSION); \
+	$(CMD_CONFIGURE)
+endif
 	touch $(notdir $(STAMP_CONF))
 
 $(STAMP_EXTRACT): $(DIR_DOWNLOAD)/$(SOURCE) | $(DIR_BUILD)
+	@echo "Extracting $(PKG)..."
 	tar xvf $(DIR_DOWNLOAD)/$(SOURCE) -C $(DIR_BUILD)
 	touch $(STAMP_EXTRACT)
 
 $(DIR_DOWNLOAD)/$(SOURCE): | $(DIR_DOWNLOAD)
+	@echo "Downloading $(PKG)..."
 	cd $(DIR_DOWNLOAD); wget $(SITE)/$(SOURCE)
 
 $(DIR_BUILD) $(DIR_INSTALL) $(DIR_DOWNLOAD):
 	mkdir -p $@
-
 
 clean:
 	$(MAKE) -C $(DIR_BUILD)/$(PKG)-$(VERSION) clean
@@ -50,5 +66,4 @@ clean:
 distclean:
 	$(MAKE) -C $(DIR_BUILD)/$(PKG)-$(VERSION) distclean
 	$(RM) $(STAMP_CONF)
-
 

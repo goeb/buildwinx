@@ -3,10 +3,12 @@ export CC = i686-w64-mingw32-gcc
 export CXX = i686-w64-mingw32-g++
 export XHOST = i686-w64-mingw32
 
-export DIR_OUTPUT ?= _output
+DIR_OUTPUT ?= _output
 export DIR_BUILD ?= $(DIR_OUTPUT)/build
 export DIR_INSTALL ?= $(DIR_OUTPUT)/install
 export DIR_DOWNLOAD ?= dl
+
+DIR_INSTALL := $(abspath $(DIR_INSTALL))
 
 # the order takes into account dependancies between libs
 PKGS =
@@ -31,7 +33,7 @@ $(INSTALL_DIR):
 all: $(PKGS)
 
 $(PKGS):
-	@echo "Package $<..."
+	@echo "Package $@..."
 	$(MAKE) -f package/$@.mk
 
 distclean: $(PKGS:%=%-distclean)
@@ -48,6 +50,7 @@ PKG_SPECIFIC_RULES = \
 					 extract \
 					 configure \
 					 build \
+					 install \
 					 dirclean \
 					 clean \
 					 distclean \
@@ -67,6 +70,7 @@ help:
 	@echo "  <pkg>-extract          - Extract <pkg> sources"
 	@echo "  <pkg>-configure        - Build <pkg> up to the configure step"
 	@echo "  <pkg>-build            - Build <pkg> up to the build step"
+	@echo "  <pkg>-install          - Install <pkg>"
 	@echo "  <pkg>-dirclean         - Remove <pkg> build directory"
 	@echo "  <pkg>-clean            - Clean <pkg> build directory"
 	@echo "  <pkg>-distclean        - Distclean <pkg> build directory"

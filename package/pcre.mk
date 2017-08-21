@@ -7,4 +7,4 @@ CONF_OPTS += "CFLAGS=-DPCRE_STATIC"
 CONF_OPTS += --enable-shared=no
 
 
-include tools/autotools.mk
+include tools/common.mk
