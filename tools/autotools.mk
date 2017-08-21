@@ -10,6 +10,15 @@ STAMP_EXTRACT = $(DIR_BUILD)/$(PKG)-$(VERSION)/.stamp_extract
 
 all: install
 
+download: $(DIR_DOWNLOAD)/$(SOURCE)
+extract: $(STAMP_EXTRACT)
+configure: $(STAMP_CONF)
+dirclean:
+	$(RM) -r $(DIR_BUILD)/$(PKG)-$(VERSION)
+rebuild: clean all
+reconfigure: distclean all
+
+
 install: build | $(DIR_INSTALL)
 	$(MAKE) -C $(DIR_BUILD)/$(PKG)-$(VERSION) \
 		install
