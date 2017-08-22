@@ -25,6 +25,11 @@ PKGS += SDL
 PKGS += SDL_mixer
 PKGS += libarchive
 PKGS += libiconv
+PKGS += libffi
+PKGS += gettext
+#PKGS += glib
+#PKGS += cairo
+#PKGS += pango
 
 .PHONY: $(PKGS)
 
