@@ -24,6 +24,7 @@ PKGS += curl
 PKGS += SDL
 PKGS += SDL_mixer
 PKGS += libarchive
+PKGS += libiconv
 
 .PHONY: $(PKGS)
 
