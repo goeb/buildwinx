@@ -11,7 +11,7 @@ PKG := $(PKG:%.mk=%)
 
 DIR_PKG_BUILD = $(DIR_BUILD)/$(PKG)-$(VERSION)/$(SUBDIR_BUILD)
 
-STAMP_CONF = $(DIR_BUILD)/$(PKG)-$(VERSION)/.stamp_conf
+STAMP_CONF = $(DIR_PKG_BUILD)/.stamp_conf
 STAMP_EXTRACT = $(DIR_BUILD)/$(PKG)-$(VERSION)/.stamp_extract
 
 all: install
@@ -33,7 +33,7 @@ else
 	$(CMD_INSTALL)
 endif
 
-build: $(STAMP_CONF) | $(DIR_BUILD)/$(PKG)-$(VERSION)
+build: $(STAMP_CONF)
 	@echo "Compiling $(PKG)..."
 	$(MAKE) -C $(DIR_PKG_BUILD) \
 		-j 2
@@ -49,12 +49,12 @@ else
 	cd $(DIR_PKG_BUILD); \
 	$(CMD_CONFIGURE)
 endif
-	touch $(notdir $(STAMP_CONF))
+	touch $@
 
 $(STAMP_EXTRACT): $(DIR_DOWNLOAD)/$(SOURCE) | $(DIR_BUILD)
 	@echo "Extracting $(PKG)..."
 	tar xvf $(DIR_DOWNLOAD)/$(SOURCE) -C $(DIR_BUILD)
-	touch $(STAMP_EXTRACT)
+	touch $@
 
 $(DIR_DOWNLOAD)/$(SOURCE): | $(DIR_DOWNLOAD)
 	@echo "Downloading $(PKG)..."
