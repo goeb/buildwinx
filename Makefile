@@ -27,9 +27,10 @@ PKGS += libarchive
 PKGS += libiconv
 PKGS += libffi
 PKGS += gettext
-#PKGS += glib
-#PKGS += cairo
-#PKGS += pango
+PKGS += glib
+PKGS += pixman
+PKGS += cairo
+PKGS += pango
 
 .PHONY: $(PKGS)
 
