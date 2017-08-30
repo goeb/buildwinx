@@ -4,7 +4,7 @@ SITE = http://www.openssl.org/source
 SOURCE = openssl-$(VERSION).tar.gz
 
 define CMD_INSTALL
-	$(MAKE) -C $(DIR_BUILD)/$(PKG)-$(VERSION) install
+	$(MAKE) -C $(DIR_BUILD)/$(PKG)-$(VERSION) install_sw
 endef
 
 define CMD_CONFIGURE
