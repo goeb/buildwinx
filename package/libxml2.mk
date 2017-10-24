@@ -6,6 +6,7 @@ SOURCE = libxml2-$(VERSION).tar.gz
 CONF_OPTS += --without-http
 CONF_OPTS += --without-python
 CONF_OPTS += --without-ftp
+CONF_OPTS += --with-iconv=$(DIR_INSTALL)
 CONF_OPTS += CFLAGS="-DLIBXML_STATIC"
 CONF_OPTS += PKG_CONFIG_LIBDIR=$(DIR_INSTALL)
 
