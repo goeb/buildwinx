@@ -19,8 +19,6 @@ CONF_OPTS += --enable-dctdecoder=none
 CONF_OPTS += FREETYPE_CFLAGS=-I$(DIR_INSTALL)/include
 CONF_OPTS += FREETYPE_LIBS="-L$(DIR_INSTALL)/lib -lfreetype"
 CONF_OPTS += CFLAGS=-I$(DIR_INSTALL)/include
-CONF_OPTS += LIBS="-L$(DIR_INSTALL)/lib -liconv"
 CONF_OPTS += PKG_CONFIG_LIBDIR="$(DIR_INSTALL)/lib/pkgconfig"
-
 
 include tools/common.mk
