@@ -4,6 +4,6 @@ SITE = http://ftpmirror.gnu.org/gettext
 SOURCE = gettext-$(VERSION).tar.xz
 
 SUBDIR_BUILD = gettext-runtime
-CONF_OPTS += --disable-shared
+CONF_OPTS += "LDFLAGS=-Wl,-Bstatic -lpthread"
 
 include tools/common.mk
