@@ -44,6 +44,7 @@ $(PKGS):
 
 distclean: $(PKGS:%=%-distclean)
 clean: $(PKGS:%=%-clean)
+download: $(PKGS:%=%-download)
 
 # $(1): rule name (eg: configure, clean, rebuild,...)
 define pkg-specific-rule

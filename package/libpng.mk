@@ -1,5 +1,5 @@
 
-VERSION = 1.6.31
+VERSION = 1.6.32
 LIBPNG_SERIES = 16
 SITE = http://downloads.sourceforge.net/project/libpng/libpng${LIBPNG_SERIES}/$(VERSION)
 SOURCE = libpng-$(VERSION).tar.xz
